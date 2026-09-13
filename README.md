@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/wherescz/sfi-numbers/main/logo.svg" width="72" height="72" alt="">
+<img src="https://i.ibb.co/JW039HkW/wifmef.png" width="1920" height="400" alt="">
 
 ### @sfi/numbers
 
 A number that turns to its new value.
 
-<img src="https://raw.githubusercontent.com/wherescz/sfi-numbers/main/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
+<img src="https://github.com/wherescz/sfi-numbers/blob/7d99a099ac153e5b2cef80f33e264606d54ef0f1/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
 
 </div>
 
