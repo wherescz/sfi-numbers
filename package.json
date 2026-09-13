@@ -1,5 +1,6 @@
 {
   "name": "@sfi/numbers",
+  "author": "cz",
   "version": "0.1.0",
   "description": "A number that turns to its new value. The Numbers component from The San Francisco Interface, on its own.",
   "license": "MIT",
