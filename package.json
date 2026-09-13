@@ -1,7 +1,7 @@
 {
-  "name": "@sfi/numbers",
+  "name": "@sfinterface/numbers",
   "author": "cz",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Numbers that move the way they should. A React component from The San Francisco Interface.",
   "license": "MIT",
   "type": "module",

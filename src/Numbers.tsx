@@ -12,6 +12,7 @@ export interface NumbersProps extends Omit<React.HTMLAttributes<HTMLSpanElement>
   transition?: NumbersTransition;
   blur?: boolean;
   fade?: number;
+  softness?: number;
   duration?: number;
   label?: string;
 }
@@ -94,7 +95,7 @@ const reduced = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function Numbers(
-  { value, locale, format, transition = "roll", trend = "auto", blur = true, fade, duration, label, className, ...props },
+  { value, locale, format, transition = "roll", trend = "auto", blur = true, fade, softness, duration, label, className, ...props },
   ref,
 ) {
   const numerals = React.useMemo(() => numeralsOf(locale, format), [locale, format]);
@@ -303,6 +304,7 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
   const knobs: Record<string, string> = {};
   if (duration !== undefined) knobs["--sfi-numbers-roll"] = `${duration}ms`;
   if (fade !== undefined) knobs["--sfi-numbers-fade"] = `${fade}`;
+  if (softness !== undefined) knobs["--sfi-numbers-softness"] = `${softness}`;
   const style = Object.keys(knobs).length
     ? ({ ...knobs, ...props.style } as React.CSSProperties)
     : props.style;

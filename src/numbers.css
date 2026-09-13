@@ -55,6 +55,7 @@
 
   --sfi-numbers-fade: 1;
   --sfi-numbers-fade-roll: 1.9;
+  --sfi-numbers-softness: 0;
   --sfi-numbers-veil: calc(var(--sfi-numbers-bleed) * var(--sfi-numbers-fade));
   --sfi-numbers-veil-deep: calc(var(--sfi-numbers-bleed) * var(--sfi-numbers-fade) * var(--sfi-numbers-fade-roll));
 
@@ -104,14 +105,20 @@
   mask-image: linear-gradient(
     to bottom,
     rgb(0 0 0 / 0) 0,
-    rgb(0 0 0 / 0.06) calc(var(--sfi-numbers-veil) * 0.35),
-    rgb(0 0 0 / 0.4) calc(var(--sfi-numbers-veil) * 0.68),
-    rgb(0 0 0 / 0.86) calc(var(--sfi-numbers-veil) * 0.9),
+    rgb(0 0 0 / clamp(0, calc(0.0343 + var(--sfi-numbers-softness) * 0.0697), 1)) calc(var(--sfi-numbers-veil) * 0.2),
+    rgb(0 0 0 / clamp(0, calc(0.06 + var(--sfi-numbers-softness) * 0.22175), 1)) calc(var(--sfi-numbers-veil) * 0.35),
+    rgb(0 0 0 / clamp(0, calc(0.2145 + var(--sfi-numbers-softness) * 0.2855), 1)) calc(var(--sfi-numbers-veil) * 0.5),
+    rgb(0 0 0 / clamp(0, calc(0.4 + var(--sfi-numbers-softness) * 0.358), 1)) calc(var(--sfi-numbers-veil) * 0.68),
+    rgb(0 0 0 / clamp(0, calc(0.651 + var(--sfi-numbers-softness) * 0.245), 1)) calc(var(--sfi-numbers-veil) * 0.8),
+    rgb(0 0 0 / clamp(0, calc(0.86 + var(--sfi-numbers-softness) * 0.112), 1)) calc(var(--sfi-numbers-veil) * 0.9),
     rgb(0 0 0 / 1) var(--sfi-numbers-veil),
     rgb(0 0 0 / 1) calc(100% - var(--sfi-numbers-veil)),
-    rgb(0 0 0 / 0.86) calc(100% - var(--sfi-numbers-veil) * 0.9),
-    rgb(0 0 0 / 0.4) calc(100% - var(--sfi-numbers-veil) * 0.68),
-    rgb(0 0 0 / 0.06) calc(100% - var(--sfi-numbers-veil) * 0.35),
+    rgb(0 0 0 / clamp(0, calc(0.86 + var(--sfi-numbers-softness) * 0.112), 1)) calc(100% - var(--sfi-numbers-veil) * 0.9),
+    rgb(0 0 0 / clamp(0, calc(0.651 + var(--sfi-numbers-softness) * 0.245), 1)) calc(100% - var(--sfi-numbers-veil) * 0.8),
+    rgb(0 0 0 / clamp(0, calc(0.4 + var(--sfi-numbers-softness) * 0.358), 1)) calc(100% - var(--sfi-numbers-veil) * 0.68),
+    rgb(0 0 0 / clamp(0, calc(0.2145 + var(--sfi-numbers-softness) * 0.2855), 1)) calc(100% - var(--sfi-numbers-veil) * 0.5),
+    rgb(0 0 0 / clamp(0, calc(0.06 + var(--sfi-numbers-softness) * 0.22175), 1)) calc(100% - var(--sfi-numbers-veil) * 0.35),
+    rgb(0 0 0 / clamp(0, calc(0.0343 + var(--sfi-numbers-softness) * 0.0697), 1)) calc(100% - var(--sfi-numbers-veil) * 0.2),
     rgb(0 0 0 / 0) 100%
   );
 }

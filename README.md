@@ -2,7 +2,7 @@
 
 <img src="https://i.ibb.co/JW039HkW/wifmef.png" width="1920" height="400" alt="">
 
-### @sfi/numbers
+### @sfinterface/numbers
 
 Numbers that move the way they should. A React component from **The San Francisco Interface**.
 
@@ -19,12 +19,12 @@ Numbers that move the way they should. A React component from **The San Francisc
 <br>
 
 ```sh
-npm i @sfi/numbers
+npm i @sfinterface/numbers
 ```
 
 ```tsx
-import { Numbers } from "@sfi/numbers";
-import "@sfi/numbers/styles.css";
+import { Numbers } from "@sfinterface/numbers";
+import "@sfinterface/numbers/styles.css";
 
 <Numbers value={count} />
 ```
@@ -77,13 +77,22 @@ come from the platform.
 
 ## Fade
 
-How far the soft edge of the window reaches. While a column turns it deepens, so
-the passing digits go ghostly and settle back.
+`fade` is how far the soft edge of the window reaches. While a column turns it
+deepens, so the passing digits go ghostly and settle back.
 
 ```tsx
 <Numbers value={n} fade={0} />
 <Numbers value={n} />
 <Numbers value={n} fade={2.4} />
+```
+
+`softness` is the shape of that edge rather than its reach. At 0 a digit stays
+crisp almost to the edge and then lets go quickly; at 1 the same reach is spread
+into an even, eased ramp with no knee in it.
+
+```tsx
+<Numbers value={n} softness={1} />
+<Numbers value={n} fade={2} softness={0.6} />
 ```
 
 <br>
@@ -99,6 +108,7 @@ the passing digits go ghostly and settle back.
 | `trend` | `"auto" \| "up" \| "down"` | `"auto"` |
 | `blur` | `boolean` | `true` |
 | `fade` | `number` | `1` |
+| `softness` | `number` | `0` |
 | `duration` | `number` ms | `520` |
 | `label` | `string` | the formatted value |
 
@@ -118,6 +128,7 @@ Every value is a custom property — set one on `:root`, on a wrapper, or inline
 | `--sfi-numbers-blur` | `0.09em` | the deepest a fast column smears |
 | `--sfi-numbers-fade` | `1` | how far the window's soft edge reaches |
 | `--sfi-numbers-fade-roll` | `1.9` | how much further it reaches mid-turn |
+| `--sfi-numbers-softness` | `0` | how gradually that edge arrives, 0 crisp to 1 even |
 | `--sfi-numbers-ease` | `cubic-bezier(0.32, 0.72, 0, 1)` | the curve a column turns on |
 | `--sfi-numbers-ease-exit` | `cubic-bezier(0.4, 0, 1, 1)` | and the one it leaves on |
 
