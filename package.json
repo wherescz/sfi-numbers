@@ -1,0 +1,61 @@
+{
+  "name": "@sfi/numbers",
+  "version": "0.1.0",
+  "description": "A number that turns to its new value. The Numbers component from The San Francisco Interface, on its own.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/numbers.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "node scripts/build-css.mjs && concurrently -r \"tsup --watch\" \"node scripts/build-css.mjs --watch\"",
+    "build": "tsup && node scripts/build-css.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "concurrently": "^9.1.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "animation",
+    "counter",
+    "number",
+    "odometer",
+    "react",
+    "rolling-number",
+    "ticker"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wherescz/sfi-numbers.git"
+  },
+  "homepage": "https://github.com/wherescz/sfi-numbers",
+  "bugs": {
+    "url": "https://github.com/wherescz/sfi-numbers/issues"
+  }
+}
