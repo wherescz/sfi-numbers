@@ -35,8 +35,8 @@ Each column is a strip of digits behind a window. Changing the value turns only
 the columns whose digit actually moved, and the box grows or shrinks to fit what
 it now says.
 
-Face, size, weight, colour and tracking are inherited — the stylesheet describes
-motion and geometry and nothing else. A readout in a heading is the heading's
+Face, size, weight, colour and tracking are inherited. The stylesheet describes
+motion and geometry and nothing else, so a readout in a heading is the heading's
 type.
 
 The digits are `aria-hidden`; one formatted string sits behind them, so a screen
@@ -102,7 +102,7 @@ into an even, eased ramp with no knee in it.
 | prop | type | default |
 | --- | --- | --- |
 | `value` | `number` | required |
-| `format` | `Intl.NumberFormatOptions` | — |
+| `format` | `Intl.NumberFormatOptions` | none |
 | `locale` | `string \| string[]` | the runtime's |
 | `transition` | `"roll" \| "tick" \| "blur" \| "flip" \| "scale"` | `"roll"` |
 | `trend` | `"auto" \| "up" \| "down"` | `"auto"` |
@@ -118,7 +118,7 @@ Everything else is spread onto the root `<span>`.
 
 ## Theming
 
-Every value is a custom property — set one on `:root`, on a wrapper, or inline.
+Every value is a custom property. Set one on `:root`, on a wrapper, or inline.
 
 | token | default | |
 | --- | --- | --- |
@@ -154,7 +154,8 @@ number changes, and nothing animates.
 ## Requirements
 
 React 18 or 19. No dependencies, types bundled. It renders on the server with
-the formatted value already in the markup — no empty box, nothing to guard.
+the formatted value already in the markup, so there is no empty box and nothing
+to guard.
 
 <br>
 
