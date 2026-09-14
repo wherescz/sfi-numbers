@@ -65,6 +65,7 @@
 
 .sfi-numbers-affix {
   display: inline-block;
+  position: relative;
   flex: none;
   white-space: nowrap;
   font: inherit;
@@ -301,8 +302,9 @@
 }
 
 .sfi-numbers-slot[data-arriving],
-.sfi-numbers-mark[data-arriving] {
-  animation: sfi-numbers-in var(--sfi-settle, 240ms) var(--sfi-numbers-ease) both;
+.sfi-numbers-mark[data-arriving],
+.sfi-numbers-affix[data-arriving] {
+  animation: sfi-numbers-in var(--sfi-settle, 240ms) var(--sfi-numbers-ease) var(--sfi-numbers-wait, 0ms) both;
 }
 
 @keyframes sfi-numbers-in {

@@ -153,11 +153,20 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
     const dir: 1 | -1 = trend === "up" ? 1 : trend === "down" ? -1 : value >= from ? 1 : -1;
     heading.current = dir;
 
+    let arriving = 0;
+    let travelling = false;
     const nextSeats = new Map<string, number>();
     const gone = new Map(shown.current);
     const swapped = new Map<string, number>();
 
-    rowEl.querySelectorAll<HTMLElement>("[data-cell]").forEach((el) => {
+    const inRow = [...rowEl.querySelectorAll<HTMLElement>("[data-cell]")];
+
+    travelling = inRow.some((el) => {
+      const was = seats.current.get(el.dataset.cell as string);
+      return was !== undefined && Math.abs(was - el.offsetLeft) >= 1;
+    });
+
+    inRow.forEach((el) => {
       const key = el.dataset.cell as string;
       const seat = el.offsetLeft;
       nextSeats.set(key, seat);
@@ -167,7 +176,12 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
       const before = shown.current.get(key);
 
       if (was === undefined) {
-        if (!still && seats.current.size > 0) el.setAttribute("data-arriving", "");
+        if (!still && seats.current.size > 0) {
+          const after = travelling ? shift * 0.55 : 0;
+          el.style.setProperty("--sfi-numbers-wait", `${Math.round(after + Math.min(arriving, 5) * 30)}ms`);
+          arriving += 1;
+          el.setAttribute("data-arriving", "");
+        }
         return;
       }
       el.removeAttribute("data-arriving");
@@ -251,12 +265,7 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
       running.cancel();
       widthRun.current = null;
     }
-    let beside = 0;
-    hostEl.querySelectorAll<HTMLElement>(".sfi-numbers-affix").forEach((el) => {
-      const box = getComputedStyle(el);
-      beside += el.offsetWidth + (parseFloat(box.marginLeft) || 0) + (parseFloat(box.marginRight) || 0);
-    });
-    const now = rowEl.offsetWidth + beside;
+    const now = rowEl.offsetWidth;
     const start = visual ?? widthSeat.current;
     widthSeat.current = now;
     if (start === null || Math.abs(start - now) < 0.5 || still) return;
@@ -331,12 +340,12 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
     >
 
       <span className="sfi-numbers-said">{label ?? spoken}</span>
-      {prefix === undefined || prefix === null ? null : (
-        <span className="sfi-numbers-affix" data-side="start" aria-hidden="true">
-          {prefix}
-        </span>
-      )}
       <span className="sfi-numbers-row" ref={row} aria-hidden="true">
+        {prefix === undefined || prefix === null ? null : (
+          <span className="sfi-numbers-affix" data-cell="affix:start" data-side="start">
+            {prefix}
+          </span>
+        )}
         {cells.map((cell) => (
           <Piece
             key={cell.key}
@@ -362,12 +371,12 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
             }}
           />
         ))}
+        {suffix === undefined || suffix === null ? null : (
+          <span className="sfi-numbers-affix" data-cell="affix:end" data-side="end">
+            {suffix}
+          </span>
+        )}
       </span>
-      {suffix === undefined || suffix === null ? null : (
-        <span className="sfi-numbers-affix" data-side="end" aria-hidden="true">
-          {suffix}
-        </span>
-      )}
     </span>
   );
 });
