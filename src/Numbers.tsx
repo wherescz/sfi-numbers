@@ -251,7 +251,12 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
       running.cancel();
       widthRun.current = null;
     }
-    const now = rowEl.offsetWidth;
+    let beside = 0;
+    hostEl.querySelectorAll<HTMLElement>(".sfi-numbers-affix").forEach((el) => {
+      const box = getComputedStyle(el);
+      beside += el.offsetWidth + (parseFloat(box.marginLeft) || 0) + (parseFloat(box.marginRight) || 0);
+    });
+    const now = rowEl.offsetWidth + beside;
     const start = visual ?? widthSeat.current;
     widthSeat.current = now;
     if (start === null || Math.abs(start - now) < 0.5 || still) return;
