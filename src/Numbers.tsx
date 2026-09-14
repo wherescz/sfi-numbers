@@ -17,6 +17,8 @@ export interface NumbersProps extends Omit<React.HTMLAttributes<HTMLSpanElement>
   label?: string;
 }
 
+const useSeated = typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
+
 const CYCLE = 10;
 const HOME = CYCLE;
 
@@ -129,7 +131,7 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
     if (outgoingTimer.current) clearTimeout(outgoingTimer.current);
   }, []);
 
-  React.useLayoutEffect(() => {
+  useSeated(() => {
     const rowEl = row.current;
     const hostEl = host.current;
     if (!rowEl || !hostEl) return;
@@ -264,7 +266,7 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
       .catch(() => {});
   }, [cells, value, trend, blur, duration, transition]);
 
-  React.useLayoutEffect(() => {
+  useSeated(() => {
     const rowEl = row.current;
     if (!rowEl || leaving.length === 0 || reduced()) return;
 
