@@ -56,10 +56,27 @@
   --sfi-numbers-fade: 1;
   --sfi-numbers-fade-roll: 1.9;
   --sfi-numbers-softness: 0;
+  --sfi-numbers-gap: 0em;
   --sfi-numbers-veil: calc(var(--sfi-numbers-bleed) * var(--sfi-numbers-fade));
   --sfi-numbers-veil-deep: calc(var(--sfi-numbers-bleed) * var(--sfi-numbers-fade) * var(--sfi-numbers-fade-roll));
 
   --sfi-numbers-exit: var(--sfi-settle, 240ms);
+}
+
+.sfi-numbers-affix {
+  display: inline-block;
+  flex: none;
+  white-space: nowrap;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.sfi-numbers-affix[data-side="start"] {
+  margin-right: var(--sfi-numbers-gap, 0em);
+}
+
+.sfi-numbers-affix[data-side="end"] {
+  margin-left: var(--sfi-numbers-gap, 0em);
 }
 
 .sfi-numbers-row {

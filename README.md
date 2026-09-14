@@ -6,13 +6,15 @@
 
 Numbers that move the way they should. A React component from **The San Francisco Interface**.
 
-<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
+**[numbers.sfinterface.com](https://numbers.sfinterface.com)**
+
+<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/assets/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
 
 <br>
 <br>
 <br>
 
-<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/preview-gif.gif" width="1920" alt="A number rolling from 1,204 to 1,251">
+<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/assets/preview.gif" width="1920" alt="A number rolling from 1,204 to 1,251">
 
 </div>
 
@@ -45,6 +47,11 @@ reader says *one thousand two hundred and four*, not twelve glyphs.
 From **The San Francisco Interface**, shipped on its own.
 
 <br>
+
+## Documentation
+
+Every prop, every token and a playground to move them in:
+**[numbers.sfinterface.com](https://numbers.sfinterface.com)**
 
 ## Formatting
 
@@ -97,6 +104,21 @@ into an even, eased ramp with no knee in it.
 
 <br>
 
+## Prefix and suffix
+
+Anything set beside the number travels with it: the box is one inline box, so a
+symbol on either side stays against the digits as the number grows a column or
+loses one.
+
+```tsx
+<Numbers value={1204} prefix="$" />
+<Numbers value={12.4} suffix="%" />
+<Numbers value={48} prefix={<Icon />} suffix="GB" />
+```
+
+`--sfi-numbers-gap` sets the air between an affix and the digits. It is `0em` by
+default, which is what a currency symbol wants; a word wants about `0.25em`.
+
 ## Props
 
 | prop | type | default |
@@ -109,6 +131,8 @@ into an even, eased ramp with no knee in it.
 | `blur` | `boolean` | `true` |
 | `fade` | `number` | `1` |
 | `softness` | `number` | `0` |
+| `prefix` | `ReactNode` | none |
+| `suffix` | `ReactNode` | none |
 | `duration` | `number` ms | `520` |
 | `label` | `string` | the formatted value |
 
@@ -129,6 +153,7 @@ Every value is a custom property. Set one on `:root`, on a wrapper, or inline.
 | `--sfi-numbers-fade` | `1` | how far the window's soft edge reaches |
 | `--sfi-numbers-fade-roll` | `1.9` | how much further it reaches mid-turn |
 | `--sfi-numbers-softness` | `0` | how gradually that edge arrives, 0 crisp to 1 even |
+| `--sfi-numbers-gap` | `0em` | the air between a prefix or suffix and the digits |
 | `--sfi-numbers-ease` | `cubic-bezier(0.32, 0.72, 0, 1)` | the curve a column turns on |
 | `--sfi-numbers-ease-exit` | `cubic-bezier(0.4, 0, 1, 1)` | and the one it leaves on |
 

@@ -4,7 +4,7 @@ import { mergeRefs } from "./utils/refs";
 
 export type NumbersTransition = "roll" | "tick" | "blur" | "flip" | "scale";
 
-export interface NumbersProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "children"> {
+export interface NumbersProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "children" | "prefix"> {
   value: number;
   locale?: string | string[];
   format?: Intl.NumberFormatOptions;
@@ -13,6 +13,8 @@ export interface NumbersProps extends Omit<React.HTMLAttributes<HTMLSpanElement>
   blur?: boolean;
   fade?: number;
   softness?: number;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
   duration?: number;
   label?: string;
 }
@@ -97,7 +99,7 @@ const reduced = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function Numbers(
-  { value, locale, format, transition = "roll", trend = "auto", blur = true, fade, softness, duration, label, className, ...props },
+  { value, locale, format, transition = "roll", trend = "auto", blur = true, fade, softness, prefix, suffix, duration, label, className, ...props },
   ref,
 ) {
   const numerals = React.useMemo(() => numeralsOf(locale, format), [locale, format]);
@@ -303,6 +305,9 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
 
   const setHost = React.useMemo(() => mergeRefs(ref, host), [ref]);
 
+  const said = (part: React.ReactNode) => (typeof part === "string" || typeof part === "number" ? String(part) : "");
+  const spoken = `${said(prefix)}${text}${said(suffix)}`;
+
   const knobs: Record<string, string> = {};
   if (duration !== undefined) knobs["--sfi-numbers-roll"] = `${duration}ms`;
   if (fade !== undefined) knobs["--sfi-numbers-fade"] = `${fade}`;
@@ -320,7 +325,12 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
       style={style}
     >
 
-      <span className="sfi-numbers-said">{label ?? text}</span>
+      <span className="sfi-numbers-said">{label ?? spoken}</span>
+      {prefix === undefined || prefix === null ? null : (
+        <span className="sfi-numbers-affix" data-side="start" aria-hidden="true">
+          {prefix}
+        </span>
+      )}
       <span className="sfi-numbers-row" ref={row} aria-hidden="true">
         {cells.map((cell) => (
           <Piece
@@ -348,6 +358,11 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
           />
         ))}
       </span>
+      {suffix === undefined || suffix === null ? null : (
+        <span className="sfi-numbers-affix" data-side="end" aria-hidden="true">
+          {suffix}
+        </span>
+      )}
     </span>
   );
 });
