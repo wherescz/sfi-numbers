@@ -177,8 +177,7 @@ export const Numbers = React.forwardRef<HTMLSpanElement, NumbersProps>(function 
 
       if (was === undefined) {
         if (!still && seats.current.size > 0) {
-          const after = travelling ? shift * 0.55 : 0;
-          el.style.setProperty("--sfi-numbers-wait", `${Math.round(after + Math.min(arriving, 5) * 30)}ms`);
+          el.style.setProperty("--sfi-numbers-wait", `${Math.min(arriving, 4) * 18}ms`);
           arriving += 1;
           el.setAttribute("data-arriving", "");
         }

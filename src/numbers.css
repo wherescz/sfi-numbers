@@ -304,19 +304,26 @@
 .sfi-numbers-slot[data-arriving],
 .sfi-numbers-mark[data-arriving],
 .sfi-numbers-affix[data-arriving] {
-  animation: sfi-numbers-in var(--sfi-settle, 240ms) var(--sfi-numbers-ease) var(--sfi-numbers-wait, 0ms) both;
+  transform-origin: center;
+  animation: sfi-numbers-in var(--sfi-settle, 240ms) linear var(--sfi-numbers-wait, 0ms) both;
 }
 
 @keyframes sfi-numbers-in {
-  from {
+  0% {
     opacity: 0;
     filter: blur(var(--sfi-numbers-blur));
-    transform: translateY(calc(var(--sfi-numbers-bleed) * -0.5));
+    transform: translateY(calc(var(--sfi-numbers-bleed) * -0.5)) scaleX(0.55);
   }
-  to {
+  45% {
+    opacity: 0.14;
+  }
+  78% {
+    opacity: 0.62;
+  }
+  100% {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(0);
+    transform: translateY(0) scaleX(1);
   }
 }
 
