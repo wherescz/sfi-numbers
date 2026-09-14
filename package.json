@@ -54,10 +54,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wherescz/sfi-numbers.git"
+    "url": "git+https://github.com/wherescz/sfinterface-numbers.git"
   },
-  "homepage": "https://github.com/wherescz/sfi-numbers",
+  "homepage": "https://github.com/wherescz/sfinterface-numbers",
   "bugs": {
-    "url": "https://github.com/wherescz/sfi-numbers/issues"
+    "url": "https://github.com/wherescz/sfinterface-numbers/issues"
   }
 }

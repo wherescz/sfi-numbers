@@ -6,13 +6,13 @@
 
 Numbers that move the way they should. A React component from **The San Francisco Interface**.
 
-<img src="https://github.com/wherescz/sfi-numbers/blob/7d99a099ac153e5b2cef80f33e264606d54ef0f1/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
+<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/tags.svg" alt="MIT · 13 kB · No dependencies · React 18 and 19 · TypeScript · SSR ready">
 
 <br>
 <br>
 <br>
 
-<img src="https://github.com/wherescz/sfi-numbers/blob/3311b4e84cd7e4ba7119cefd76a0bb57f8ebed8b/preview-gif.gif" width="1920" alt="A number rolling from 1,204 to 1,251">
+<img src="https://raw.githubusercontent.com/wherescz/sfinterface-numbers/main/preview-gif.gif" width="1920" alt="A number rolling from 1,204 to 1,251">
 
 </div>
 
